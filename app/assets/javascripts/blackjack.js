@@ -12,16 +12,24 @@ var Deal = (function(){
   function hit(){
     playerCards.push((Math.floor(Math.random() * 10) + 1))
   }
+  function dealerHit(){
+    computerCards.push((Math.floor(Math.random() * 10) + 1))
+  }
   //--calculations
   var calculations = (function(){
-  function check(){
-    // if (Deal.total(revealDealer) < (Deal.total(showCards)){
-    //   console.log("good")
-    // } 
-    
+  function dealerlower(){
+    if (Deal.total(Deal.revealDealer()) < Deal.total(Deal.revealPlayerCards()) ){
+      return(true)
+    } else {
+      return(false)
+    }
+  }
+  function findWinner(){
+
   }
   return {
-    check : check
+    dealerlower : dealerlower,
+    findWinner : findWinner
   }
 })()
 //--calculations
@@ -64,7 +72,8 @@ var Deal = (function(){
     bust : bust,
     revealDealer : revealDealer,
     calculations : calculations,
-    total : total
+    total : total,
+    dealerHit : dealerHit
   }
 
 })()
@@ -86,6 +95,14 @@ View.prototype = {
   },
   showDealer : function(dealer){
     $('.dealer').text(dealer);
+  },
+  showWinner : function(dealerWins){
+    debugger;
+    if (dealerWins) {
+      $('.winner').text("You Lost")
+    } else {
+      $('.winner').text("You Win")
+    }
   }
 
 }
@@ -99,7 +116,12 @@ var program = (function(){
   function listeners(){
     $('.stay').click(function(){
         view.showDealer(Deal.revealDealer());
-        Deal.calculations.check();
+        console.log(Deal.calculations.dealerlower())
+        while (Deal.calculations.dealerlower()) {
+          Deal.dealerHit();
+          view.showDealer(Deal.revealDealer());
+        }
+     view.showWinner(Deal.calculations.dealerlower());
     })
     ,
     $(".hit").click(function(){
@@ -127,8 +149,6 @@ var program = (function(){
 
 $(document).ready(function(){
  program.listeners()
- 
-
 })
 
 
