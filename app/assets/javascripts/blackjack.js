@@ -78,7 +78,6 @@ var Deal = (function(){
 
 })()
 
-
 View = function(){
 
 }
@@ -106,7 +105,6 @@ View.prototype = {
   }
 
 }
-
 
 
 
@@ -144,7 +142,7 @@ var program = (function(){
   }
 })()
 
-
+Deal.dealerHit();
 
 
 $(document).ready(function(){

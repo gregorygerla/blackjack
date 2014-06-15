@@ -40,6 +40,16 @@ describe("Deal",function(){
 
   })
 })
+describe("Dealerlower should work",function(){
+  it("should make the right amount",function(){
+  Deal: {
+    calculations: jasmine.createSpyObj('calculations', ['dealerlower'])
+  }
+  spyOn(Deal.calculations,'dealerlower');
+  Deal.calculations.dealerlower();
+    expect(Deal.calculations.dealerlower).toHaveBeenCalled();
+  })
+})
 
 
 describe("View",function(){
@@ -50,3 +60,48 @@ describe("View",function(){
     expect(view.update).toHaveBeenCalled()
   })
 })
+
+
+describe("The calculations function",function(){
+  it("should make dealer lower",function(){
+    playerCards = [3]
+    computerCards = [4];
+    expect(Deal.calculations.dealerlower()).toBeFalsy();
+  }),
+  it("should make dealer higher",function(){
+    playerCards = [5]
+    computerCards = [4];
+    expect(Deal.calculations.dealerlower()).toBeTruthy();
+  })
+})
+
+describe("DealerHit",function(){
+  it ("should work",function(){
+    spyOn(Deal,'dealerHit');
+    Deal.dealerHit();
+    expect(Deal.dealerHit).toHaveBeenCalled();
+  });
+})
+
+describe("Views",function(){
+  it("should update everything",function(){
+    view = new View();
+    spyOn(view,'hit');
+    view.hit();
+    expect(view.hit).toHaveBeenCalled();
+  }),
+  it("should change the text",function(){
+     expect($('.players')).toBeEmpty()
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
