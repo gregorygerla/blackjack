@@ -42,6 +42,11 @@ var Deal = (function(){
   function revealDealer(){
     return (computerCards)
   }
+  function restart_game(){
+    playerCards = []
+    computerCards = []
+
+  }
   function total(person){
 
     total = 0 
@@ -73,7 +78,8 @@ var Deal = (function(){
     revealDealer : revealDealer,
     calculations : calculations,
     total : total,
-    dealerHit : dealerHit
+    dealerHit : dealerHit,
+    restart_game : restart_game
   }
 
 })()
@@ -82,6 +88,13 @@ View = function(){
 
 }
 View.prototype = {
+  restart : function(){
+    $('.players').text(Deal.revealPlayerCards());
+    $('.dealer').text(Deal.revealDealer());
+    console.log("hi")
+    $('play_again').css("display","none")
+    $('.action_buttons').css("visibility","initial");
+  },
   update : function(){
     $('.players').text(Deal.revealPlayerCards());
     $('.dealer').text(Deal.revealFirstComputerCard());
@@ -91,12 +104,13 @@ View.prototype = {
   },
   playerbust : function(){
     $('.bust').text("bust!!");
+    $('#action_buttons').hide()
+    $('.play_again').show();
   },
   showDealer : function(dealer){
     $('.dealer').text(dealer);
   },
   showWinner : function(dealerWins){
-    debugger;
     if (dealerWins) {
       $('.winner').text("You Lost")
     } else {
@@ -108,10 +122,32 @@ View.prototype = {
 
 
 
+var restartGameController = function(view){
+  this.view = view
+}
+
+restartGameController.prototype = {
+  restart_game : function(){
+    Deal.restart_game();
+    this.view.restart();
+  }
+}
+
+
+
+
+
+
+
 
 var program = (function(){
   var view = new View
+  restart = new restartGameController(view)
+
   function listeners(){
+    $('.play_again').click(function(){
+      restart.restart_game()
+    })
     $('.stay').click(function(){
         view.showDealer(Deal.revealDealer());
         console.log(Deal.calculations.dealerlower())

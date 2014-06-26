@@ -89,9 +89,6 @@ describe("Views",function(){
     spyOn(view,'hit');
     view.hit();
     expect(view.hit).toHaveBeenCalled();
-  }),
-  it("should change the text",function(){
-     expect($('.players')).toBeEmpty()
   })
 })
 

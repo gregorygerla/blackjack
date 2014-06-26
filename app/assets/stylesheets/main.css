@@ -1,0 +1,19 @@
+#header{
+	color:green;
+	text-align: center;
+	font-size:2.5em;
+}
+
+body{
+	max-width: 940px;
+	margin-right: auto;
+	margin-left: auto;
+
+}
+.play_again{
+	display:none;
+}
+
+#main-section{
+
+}
