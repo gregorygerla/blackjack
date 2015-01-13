@@ -1,0 +1,52 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+.play_again{
+	display:none;
+}
+.play-buttons{
+	display:none;
+}
+#action_buttons{
+	display:none;
+}
+.start-section{
+	text-align: center;
+}
+.start{
+	border:none;
+}
+
+.bust{
+	color:red;
+	font-size: 32px;
+}
+.buttons{
+	padding:15px 30px;
+	color: #003333;
+	border-radius: 15px;
+	cursor: pointer;
+	background:white;
+	text-transform: uppercase;
+	font-size: 32px;
+	transition: all .5s;
+	font-weight: bold;
+}
+.start:hover{
+color:white;
+background:#003333;
+}
+
+body{
+	background: #226666;
+	color: #D4EE9F;
+font-family: "Open Sans";
+
+}
+
+.content{
+	width: 960px;
+	margin:0 auto;
+}
+
+h1{
+	text-align: center;
+}
